@@ -1,0 +1,12 @@
+{
+  "domain": "at_fuel_prices",
+  "name": "Austrian Fuel Prices (E-Control)",
+  "codeowners": ["@RookieIVG"],
+  "config_flow": true,
+  "documentation": "https://github.com/RookieIVG/ha-spritpreisrechner",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/RookieIVG/ha-spritpreisrechner/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

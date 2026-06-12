@@ -1,0 +1,60 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Österreichische Spritpreise",
+        "description": "Spritpreise vom E-Control Spritpreisrechner abrufen.",
+        "data": {
+          "name": "Name",
+          "location_mode": "Standortquelle",
+          "location": "Suchstandort",
+          "tracked_entity": "Person / Gerät zum Folgen",
+          "fuel_type": "Treibstoffart",
+          "station_count": "Anzahl der Tankstellen",
+          "include_closed": "Geschlossene Tankstellen einbeziehen"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Für diesen Standort und diese Treibstoffart existiert bereits eine Suche."
+    },
+    "error": {
+      "no_tracked_entity": "Bitte wähle eine Person oder ein Gerät zum Folgen aus."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Optionen",
+        "data": {
+          "location_mode": "Standortquelle",
+          "location": "Suchstandort",
+          "tracked_entity": "Person / Gerät zum Folgen",
+          "fuel_type": "Treibstoffart",
+          "station_count": "Anzahl der Tankstellen",
+          "include_closed": "Geschlossene Tankstellen einbeziehen",
+          "scan_interval_minutes": "Aktualisierungsintervall (Minuten)"
+        },
+        "description": "Standortquelle, Treibstoffart und Anzahl der Tankstellen wählen. Mit \"Aktuelle Position\" werden die günstigsten Tankstellen rund um die verfolgte Entität angezeigt; die feste Position dient als Fallback, wenn keine GPS-Position verfügbar ist."
+      }
+    },
+    "error": {
+      "no_tracked_entity": "Bitte wähle eine Person oder ein Gerät zum Folgen aus."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "fuel_price_rank": {
+        "name": "Platz {rank}"
+      }
+    }
+  },
+  "selector": {
+    "location_mode": {
+      "options": {
+        "fixed": "Feste Position",
+        "entity": "Aktuelle Position einer Person / eines Geräts"
+      }
+    }
+  }
+}

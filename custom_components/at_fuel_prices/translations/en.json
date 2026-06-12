@@ -1,0 +1,60 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Austrian Fuel Prices",
+        "description": "Fetch fuel prices from the Austrian E-Control Spritpreisrechner.",
+        "data": {
+          "name": "Name",
+          "location_mode": "Location source",
+          "location": "Search location",
+          "tracked_entity": "Person / device to follow",
+          "fuel_type": "Fuel type",
+          "station_count": "Number of stations to track",
+          "include_closed": "Include currently closed stations"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "A search for this location and fuel type already exists."
+    },
+    "error": {
+      "no_tracked_entity": "Please choose a person or device to follow."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "location_mode": "Location source",
+          "location": "Search location",
+          "tracked_entity": "Person / device to follow",
+          "fuel_type": "Fuel type",
+          "station_count": "Number of stations to track",
+          "include_closed": "Include currently closed stations",
+          "scan_interval_minutes": "Update interval (minutes)"
+        },
+        "description": "Pick the location source, fuel type and how many stations to track. With \"Current location\" the cheapest stations around the tracked entity are shown; the fixed location is used as a fallback when no GPS position is available."
+      }
+    },
+    "error": {
+      "no_tracked_entity": "Please choose a person or device to follow."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "fuel_price_rank": {
+        "name": "Rank {rank}"
+      }
+    }
+  },
+  "selector": {
+    "location_mode": {
+      "options": {
+        "fixed": "Fixed location",
+        "entity": "Current location of a person / device"
+      }
+    }
+  }
+}
