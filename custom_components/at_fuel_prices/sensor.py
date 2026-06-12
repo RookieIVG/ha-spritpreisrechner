@@ -61,7 +61,7 @@ class AtFuelPriceSensor(
 
     _attr_has_entity_name = False
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_native_unit_of_measurement = "â¬/L"
+    _attr_native_unit_of_measurement = "€/L"
     _attr_suggested_display_precision = 3
     _attr_icon = "mdi:gas-station"
 
