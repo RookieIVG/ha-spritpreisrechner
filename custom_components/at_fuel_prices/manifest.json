@@ -1,0 +1,12 @@
+{
+  "domain": "at_fuel_prices",
+  "name": "Austrian Fuel Prices (E-Control)",
+  "version": "0.1.0",
+  "codeowners": ["@RookieIVG"],
+  "config_flow": true,
+  "documentation": "https://github.com/RookieIVG/ha-at-fuel-prices",
+  "issue_tracker": "https://github.com/RookieIVG/ha-at-fuel-prices/issues",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "requirements": []
+}

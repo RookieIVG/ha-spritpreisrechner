@@ -1,0 +1,40 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Austrian Fuel Prices",
+        "description": "Fetch fuel prices from the Austrian E-Control Spritpreisrechner.",
+        "data": {
+          "name": "Name",
+          "location": "Search location",
+          "fuel_type": "Fuel type",
+          "station_count": "Number of stations to track",
+          "include_closed": "Include currently closed stations"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "A search for this location and fuel type already exists."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "station_count": "Number of stations to track",
+          "include_closed": "Include currently closed stations",
+          "scan_interval_minutes": "Update interval (minutes)"
+        },
+        "description": "Note: E-Control bans the request URL for a day if polled too often. Keep the interval at 15 minutes or higher."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "fuel_price_rank": {
+        "name": "Rank {rank}"
+      }
+    }
+  }
+}
