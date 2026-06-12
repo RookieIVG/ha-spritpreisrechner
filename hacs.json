@@ -1,0 +1,5 @@
+{
+  "name": "Austrian Fuel Prices (E-Control)",
+  "homeassistant": "2024.12.0",
+  "render_readme": true
+}
