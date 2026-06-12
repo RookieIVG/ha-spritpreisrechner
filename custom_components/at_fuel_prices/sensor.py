@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from homeassistant.components.sensor import (
+    ENTITY_ID_FORMAT,
     SensorEntity,
     SensorStateClass,
 )
@@ -12,6 +13,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.util import slugify
 
 from .const import (
     ATTR_ADDRESS,
@@ -82,6 +84,13 @@ class AtFuelPriceSensor(
         # Keep the fuel type out of the unique id so changing it later keeps the
         # same entities (only the prices change) instead of orphaning them.
         self._attr_unique_id = f"{entry.entry_id}_{rank}"
+
+        # Pin a stable, rank-based entity_id so it never follows the dynamic
+        # friendly name. The entity_id stays e.g. sensor.spritpreise_platz_1
+        # while the displayed name shows the current cheapest station.
+        self.entity_id = ENTITY_ID_FORMAT.format(
+            slugify(f"{entry.title} platz {rank}")
+        )
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
