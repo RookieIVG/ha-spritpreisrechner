@@ -61,7 +61,7 @@ class AtFuelPriceSensor(
 
     _attr_has_entity_name = False
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_native_unit_of_measurement = "€/L"
+    _attr_native_unit_of_measurement = "â¬/L"
     _attr_suggested_display_precision = 3
     _attr_icon = "mdi:gas-station"
 
@@ -74,9 +74,14 @@ class AtFuelPriceSensor(
         """Initialise a single rank sensor."""
         super().__init__(coordinator)
         self._rank = rank
-        self._fuel_type = entry.data.get(CONF_FUEL_TYPE, DEFAULT_FUEL_TYPE)
+        # Fuel type may be changed later via the options flow.
+        self._fuel_type = entry.options.get(
+            CONF_FUEL_TYPE, entry.data.get(CONF_FUEL_TYPE, DEFAULT_FUEL_TYPE)
+        )
 
-        self._attr_unique_id = f"{entry.entry_id}_{self._fuel_type}_{rank}"
+        # Keep the fuel type out of the unique id so changing it later keeps the
+        # same entities (only the prices change) instead of orphaning them.
+        self._attr_unique_id = f"{entry.entry_id}_{rank}"
 
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, entry.entry_id)},
@@ -93,11 +98,11 @@ class AtFuelPriceSensor(
 
     @property
     def name(self) -> str:
-        """Aktuellen Stationsnamen als friendly_name anzeigen."""
+        """Show the current cheapest station's name as the friendly name."""
         station = self._station
         if station and station.get("name"):
             return station["name"]
-        return f"Platz {self._rank}"   # Fallback, wenn dieser Rang gerade leer ist
+        return f"Platz {self._rank}"
 
     @property
     def native_value(self) -> float | None:
