@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject version from tag into manifest.json
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "Setting version to $VERSION"
+          jq --arg v "$VERSION" '.version = $v' \
+            custom_components/at_fuel_prices/manifest.json > manifest.tmp
+          mv manifest.tmp custom_components/at_fuel_prices/manifest.json
+
+      - name: Create ZIP for HACS
+        run: |
+          cd custom_components/at_fuel_prices
+          zip -r ../../at_fuel_prices.zip .
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: at_fuel_prices.zip
+          generate_release_notes: true
